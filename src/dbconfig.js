@@ -13,7 +13,7 @@ let link = JSON.parse(stringify).link;
 
 dotenv.config({ path: '../.env' })
 
-async function main() {
+export async function main() {
   const client = new Client({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
