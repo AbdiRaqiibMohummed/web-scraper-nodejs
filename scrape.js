@@ -9,7 +9,6 @@ const scrape = async () => {
   let currentPage = 1; //Here you can change from the page you want to start from
   const maxPages = 10; //Here you can change to scrape all the pages im sticking with 10 for now
 
-
   //looping through the pages until the maxPages is less than or equals to it
   while (currentPage <= maxPages) {
 

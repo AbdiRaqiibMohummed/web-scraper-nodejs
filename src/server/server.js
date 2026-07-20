@@ -1,13 +1,12 @@
-import express, { request, response} from "express"
+import express from "express"
 import dotenv from "dotenv"
-import path from "path"
 import data from "../../books.json" with { type: 'json' }
 
 const app = express()
-let PORT = process.env.SERVER_PORT || 3000
 
 dotenv.config({ path: '../.env' })
 
+let PORT = process.env.SERVER_PORT || 3000
 
 // this is the default home route
 app.get("/",(req,res) => {
@@ -20,8 +19,9 @@ app.get("/",(req,res) => {
         href="/books" 
         style=" 
         padding:15px 55px;
-        border-radius:1rem;
+        border-radius:0.5rem;
         color:white; 
+        margin-bottom:20px;
         font-size:20px; 
         text-decoration: none;
         background-color:black;">ALL BOOKS</a>
@@ -31,7 +31,7 @@ app.get("/",(req,res) => {
         style=" 
         margin-top:50px;
         padding:15px 55px;
-        border-radius:1rem;
+        border-radius:0.5rem;
         color:white; 
         font-size:20px; 
         text-decoration: none;
@@ -52,16 +52,11 @@ app.get("/",(req,res) => {
 
 })
 
-
-
 //this will handle the input search from the homepage
-
 app.get("/search", (req,res) => {
     const id = req.query.id
     res.redirect(`/books/${id}`)
 })
-
-
 
 //this returns all the books
 app.get("/books", (req, res) => {
@@ -77,13 +72,13 @@ app.get("/books", (req, res) => {
           ">
             <p>Book ID: ${index + 1}</p>
   
-            <a href="${book.link}" target="_blank">
+            <a href="/books/${index + 1}" target="_blank">
               ${book.title}
             </a>
   
             <p>${book.price}</p>
             <p>${book.stock}</p>
-            <p>${book.rating} ⭐️</p>
+            <p>${book.rating}⭐️</p>
           </div>
         `;
       })
@@ -92,8 +87,6 @@ app.get("/books", (req, res) => {
     res.send(`
           <a href="/"> Back Home <a>
       <h1>Book Catalogue</h1>
-    
-  
       <div style="
         display: flex;
         flex-wrap: wrap;
@@ -110,9 +103,26 @@ app.get("/books/:id",(req,res) => {
     const id = req.params.id
     const book = data[id - 1]
 
-    res.json(book)
+    res.send(
+
+    `
+      <div style="
+            font-size: 20px;
+            padding: 20px;
+            border: 1px solid black;
+            width: 250px;
+            box-sizing: border-box;
+          ">
+
+    <p>${book.title}</p>
+    <p>${book.price}</p>
+    <p>${book.stock}</p>
+    <p>${book.rating}⭐️</p>
+    </div
+    `
+    )
 })
 
 app.listen(PORT, () => {
-    console.log("SERVER IS RUNNING ON localhost:" , PORT)
+    console.log("SERVER IS RUNNING ON localhost:",PORT)
 })
