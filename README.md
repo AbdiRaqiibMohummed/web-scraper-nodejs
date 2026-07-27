@@ -17,7 +17,7 @@ A simple web scraper built with **Node.js** and **Puppeteer**, using [Books to S
 **Prerequisites:** [Node.js](https://nodejs.org/) v18+
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/web-scraper-nodejs.git
+git clone https://github.com/AbdiRaqiibMohummed/web-scraper-nodejs.git
 cd web-scraper-nodejs
 npm install
 npm start
